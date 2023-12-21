@@ -101,7 +101,7 @@ if (isset($_POST['email'])) {
 <body>
   <div class="login-form">
     <form action="" method="POST" autocomplete="off">
-      <h2 class="text-center">D.E.M.S</h2>
+      <h2 class="text-center">IE Tracker</h2>
       <p class="hint-text">Login Panel</p>
       <div class="form-group">
         <input type="text" name="email" class="form-control" placeholder="Email" required="required">
