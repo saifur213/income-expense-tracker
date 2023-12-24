@@ -3,8 +3,14 @@
   $exp_category_dc = mysqli_query($con, "SELECT expensecategory FROM expenses WHERE user_id = '$userid' GROUP BY expensecategory");
   $exp_amt_dc = mysqli_query($con, "SELECT SUM(expense) FROM expenses WHERE user_id = '$userid' GROUP BY expensecategory");
 
+  $in_category_dc = mysqli_query($con, "SELECT incomecategory FROM income WHERE user_id = '$userid' GROUP BY incomecategory");
+  $in_amt_dc = mysqli_query($con, "SELECT SUM(income) FROM income WHERE user_id = '$userid' GROUP BY incomecategory");
+
   $exp_date_line = mysqli_query($con, "SELECT expensedate FROM expenses WHERE user_id = '$userid' GROUP BY expensedate");
   $exp_amt_line = mysqli_query($con, "SELECT SUM(expense) FROM expenses WHERE user_id = '$userid' GROUP BY expensedate");
+
+  $in_date_line = mysqli_query($con, "SELECT incomedate FROM income WHERE user_id = '$userid' GROUP BY incomedate");
+  $in_amt_line = mysqli_query($con, "SELECT SUM(income) FROM income WHERE user_id = '$userid' GROUP BY incomedate");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +22,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Expense Manager - Dashboard</title>
+  <title>Income Expense Manager - Dashboard</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,8 +60,9 @@
       <div class="sidebar-heading">Management</div>
       <div class="list-group list-group-flush">
         <a href="index.php" class="list-group-item list-group-item-action sidebar-active"><span data-feather="home"></span> Dashboard</a>
+        <a href="add_income.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Income</a>
         <a href="add_expense.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
-        <a href="manage_expense.php" class="list-group-item list-group-item-action "><span data-feather="dollar-sign"></span> Manage Expenses</a>
+        <a href="manage_expense.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Manage Expenses</a>
       </div>
       <div class="sidebar-heading">Settings </div>
       <div class="list-group list-group-flush">
@@ -98,6 +105,11 @@
             <div class="card">
               <div class="card-body">
                 <div class="row">
+                <div class="col text-center">
+                    <a href="add_income.php"><img src="icon/addex.png" width="57px" />
+                      <p>Add Income</p>
+                    </a>
+                  </div>
                   <div class="col text-center">
                     <a href="add_expense.php"><img src="icon/addex.png" width="57px" />
                       <p>Add Expenses</p>
@@ -119,6 +131,7 @@
           </div>
         </div>
 
+        <!-- Start Expense Chart-->
         <h3 class="mt-4">Full-Expense Report</h3>
         <div class="row">
           <div class="col-md">
@@ -127,7 +140,7 @@
                 <h5 class="card-title text-center">Yearly Expenses</h5>
               </div>
               <div class="card-body">
-                <canvas id="expense_line" height="150"></canvas>
+                <canvas id="expense_line" height="100"></canvas>
               </div>
             </div>
           </div>
@@ -137,11 +150,38 @@
                 <h5 class="card-title text-center">Expense Category</h5>
               </div>
               <div class="card-body">
-                <canvas id="expense_category_pie" height="150"></canvas>
+                <canvas id="expense_category_pie" height="100"></canvas>
               </div>
             </div>
           </div>
         </div>
+        <!-- End Expense Chart-->
+
+        <!-- Start Income Chart-->
+        <h3 class="mt-4">Full-Income Report</h3>
+        <div class="row">
+          <div class="col-md">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Yearly Income</h5>
+              </div>
+              <div class="card-body">
+                <canvas id="income_line" height="100"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Income Category</h5>
+              </div>
+              <div class="card-body">
+                <canvas id="income_category_pie" height="100"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Income Chart-->
 
 
       </div>
@@ -166,6 +206,7 @@
     feather.replace()
   </script>
   <script>
+    //Start Expense chart
     var ctx = document.getElementById('expense_category_pie').getContext('2d');
     var myChart = new Chart(ctx, {
       type: 'bar',
@@ -227,6 +268,72 @@
         }]
       }
     });
+    //End Expense chart
+
+    //Start Income chart
+    var ctx = document.getElementById('income_category_pie').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [<?php while ($a = mysqli_fetch_array($in_category_dc)) {
+                    echo '"' . $a['incomecategory'] . '",';
+                  } ?>],
+        datasets: [{
+          label: 'Income by Category',
+          data: [<?php while ($b = mysqli_fetch_array($in_amt_dc)) {
+                    echo '"' . $b['SUM(income)'] . '",';
+                  } ?>],
+          backgroundColor: [
+            '#6f42c1',
+            '#dc3545',
+            '#28a745',
+            '#007bff',
+            '#ffc107',
+            '#20c997',
+            '#17a2b8',
+            '#fd7e14',
+            '#e83e8c',
+            '#6610f2'
+          ],
+          borderWidth: 1
+        }]
+      }
+    });
+
+    var line = document.getElementById('income_line').getContext('2d');
+    var myChart = new Chart(line, {
+      type: 'line',
+      data: {
+        labels: [<?php while ($c = mysqli_fetch_array($in_date_line)) {
+                    echo '"' . $c['incomedate'] . '",';
+                  } ?>],
+        datasets: [{
+          label: 'Income by Month (Whole Year)',
+          data: [<?php while ($d = mysqli_fetch_array($in_amt_line)) {
+                    echo '"' . $d['SUM(income)'] . '",';
+                  } ?>],
+          borderColor: [
+            '#adb5bd'
+          ],
+          backgroundColor: [
+            '#6f42c1',
+            '#dc3545',
+            '#28a745',
+            '#007bff',
+            '#ffc107',
+            '#20c997',
+            '#17a2b8',
+            '#fd7e14',
+            '#e83e8c',
+            '#6610f2'
+          ],
+          fill: false,
+          borderWidth: 2
+        }]
+      }
+    });
+    //End Income chart
+
   </script>
 </body>
 

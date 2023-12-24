@@ -10,9 +10,9 @@ if (isset($_POST['add'])) {
     $expensedate = $_POST['expensedate'];
     $expensecategory = $_POST['expensecategory'];
 
-    $expenses = "INSERT INTO expenses (user_id, expense,expensedate,expensecategory) VALUES ('$userid', '$expenseamount','$expensedate','$expensecategory')";
+    $expenses = "INSERT INTO income (user_id, income,incomedate,incomecategory) VALUES ('$userid', '$expenseamount','$expensedate','$expensecategory')";
     $result = mysqli_query($con, $expenses) or die("Something Went Wrong!");
-    header('location: add_expense.php');
+    header('location: add_income.php');
 }
 
 if (isset($_POST['update'])) {
@@ -165,7 +165,7 @@ if (isset($_GET['delete'])) {
             </nav>
 
             <div class="container">
-                <h3 class="mt-4 text-center">Add Your Daily Expenses</h3>
+                <h3 class="mt-4 text-center">Add Your Daily Income</h3>
                 <hr>
                 <div class="row ">
 
@@ -191,52 +191,16 @@ if (isset($_GET['delete'])) {
                                     <div class="col-md">
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory4" value="Medicine" <?php echo ($expensecategory == 'Medicine') ? 'checked' : '' ?>>
+                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory4" value="Operating Income" <?php echo ($expensecategory == 'Operating Income') ? 'checked' : '' ?>>
                                             <label class="form-check-label" for="expensecategory4">
-                                                Medicine
+                                                Operating Income
                                             </label>
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory3" value="Food" <?php echo ($expensecategory == 'Food') ? 'checked' : '' ?>>
+                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory3" value="Non-Operating Income" <?php echo ($expensecategory == 'Non-Operating Income') ? 'checked' : '' ?>>
                                             <label class="form-check-label" for="expensecategory3">
-                                                Food
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory2" value="Bills & Recharges" <?php echo ($expensecategory == 'Bills & Recharges') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="expensecategory2">
-                                                Bills and Recharges
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory1" value="Entertainment" <?php echo ($expensecategory == 'Entertainment') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="expensecategory1">
-                                                Entertainment
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory7" value="Clothings" <?php echo ($expensecategory == 'Clothings') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="expensecategory7">
-                                                Clothings
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory6" value="Rent" <?php echo ($expensecategory == 'Rent') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="expensecategory6">
-                                                Rent
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory8" value="Household Items" <?php echo ($expensecategory == 'Household Items') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="expensecategory8">
-                                                Household Items
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory5" value="Others" <?php echo ($expensecategory == 'Others') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="expensecategory5">
-                                                Others
+                                                Non-Operating Income
                                             </label>
                                         </div>
                                     </div>
@@ -249,7 +213,7 @@ if (isset($_GET['delete'])) {
                                     <?php elseif ($del == true) : ?>
                                         <button class="btn btn-lg btn-block btn-danger" style="border-radius: 0%;" type="submit" name="delete">Delete</button>
                                     <?php else : ?>
-                                        <button type="submit" name="add" class="btn btn-lg btn-block btn-success" style="border-radius: 0%;">Add Expense</button>
+                                        <button type="submit" name="add" class="btn btn-lg btn-block btn-success" style="border-radius: 0%;">Add Income</button>
                                     <?php endif ?>
                                 </div>
                             </div>

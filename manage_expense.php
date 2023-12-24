@@ -12,7 +12,7 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Expense Manager - Dashboard</title>
+    <title>Income Expense Manager - Dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,8 +39,9 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
             <div class="sidebar-heading">Management</div>
             <div class="list-group list-group-flush">
                 <a href="index.php" class="list-group-item list-group-item-action"><span data-feather="home"></span> Dashboard</a>
+                <a href="add_income.php" class="list-group-item list-group-item-action sidebar-active"><span data-feather="plus-square"></span> Add Income</a>
                 <a href="add_expense.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
-                <a href="manage_expense.php" class="list-group-item list-group-item-action sidebar-active"><span data-feather="dollar-sign"></span> Manage Expenses</a>
+                <a href="manage_expense.php" class="list-group-item list-group-item-action sidebar-active"><span data-feather="plus-square"></span> Manage Expenses</a>
             </div>
             <div class="sidebar-heading">Settings </div>
             <div class="list-group list-group-flush">
@@ -98,8 +99,8 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
                             <?php $count=1; while ($row = mysqli_fetch_array($exp_fetched)) { ?>
                                 <tr>
                                     <td><?php echo $count;?></td>
-                                    <td>$<?php echo $row['expensedate']; ?></td>
-                                    <td><?php echo '$'.$row['expense']; ?></td>
+                                    <td><?php echo $row['expensedate']; ?></td>
+                                    <td><?php echo ''.$row['expense']; ?></td>
                                     <td><?php echo $row['expensecategory']; ?></td>
                                     <td class="text-center">
                                         <a href="add_expense.php?edit=<?php echo $row['expense_id']; ?>" class="btn btn-primary btn-sm" style="border-radius:0%;">Edit</a>
