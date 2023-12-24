@@ -62,7 +62,7 @@
         <a href="index.php" class="list-group-item list-group-item-action sidebar-active"><span data-feather="home"></span> Dashboard</a>
         <a href="add_income.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Income</a>
         <a href="add_expense.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
-        <a href="manage_expense.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Manage Expenses</a>
+        <a href="manage_expense.php" class="list-group-item list-group-item-action "><span data-feather="activity"></span> Manage Expenses</a>
       </div>
       <div class="sidebar-heading">Settings </div>
       <div class="list-group list-group-flush">
@@ -106,7 +106,7 @@
               <div class="card-body">
                 <div class="row">
                 <div class="col text-center">
-                    <a href="add_income.php"><img src="icon/addex.png" width="57px" />
+                    <a href="add_income.php"><img src="icon/income.jpg" width="57px" />
                       <p>Add Income</p>
                     </a>
                   </div>
