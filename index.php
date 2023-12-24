@@ -154,6 +154,16 @@
               </div>
             </div>
           </div>
+          <!-- <div class="col-md">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Expense Category</h5>
+              </div>
+              <div class="card-body">
+                <canvas id="expense_category_pie_chart" height="100"></canvas>
+              </div>
+            </div>
+          </div> -->
         </div>
         <!-- End Expense Chart-->
 
@@ -235,6 +245,7 @@
         }]
       }
     });
+
 
     var line = document.getElementById('expense_line').getContext('2d');
     var myChart = new Chart(line, {

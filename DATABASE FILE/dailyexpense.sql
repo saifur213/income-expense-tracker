@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 21, 2023 at 10:15 AM
+-- Generation Time: Dec 24, 2023 at 07:06 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -40,10 +40,43 @@ CREATE TABLE `expenses` (
 --
 
 INSERT INTO `expenses` (`expense_id`, `user_id`, `expense`, `expensedate`, `expensecategory`) VALUES
-(77, '7', 100, '2023-12-21', 'Entertainment'),
-(78, '7', 340, '2023-12-21', 'Clothings'),
-(79, '7', 150, '2023-12-21', 'Food'),
-(80, '7', 250, '2022-12-21', 'Bills & Recharges');
+(81, '7', 500, '2022-01-24', 'Medicine'),
+(82, '7', 2000, '2023-01-24', 'Food'),
+(83, '7', 600, '2023-01-24', 'Bills & Recharges'),
+(84, '7', 1500, '2023-01-24', 'Clothings'),
+(85, '7', 1500, '2023-02-24', 'Food'),
+(86, '7', 500, '2023-02-24', 'Medicine');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `income`
+--
+
+CREATE TABLE `income` (
+  `income_id` int NOT NULL,
+  `user_id` varchar(15) NOT NULL,
+  `income` int NOT NULL,
+  `incomedate` varchar(15) NOT NULL,
+  `incomecategory` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `income`
+--
+
+INSERT INTO `income` (`income_id`, `user_id`, `income`, `incomedate`, `incomecategory`) VALUES
+(5, '7', 900, '2022-01-24', 'Operating Income'),
+(6, '7', 1000, '2022-02-24', 'Operating Income'),
+(9, '7', 1100, '2022-05-24', 'Non-Operating Income'),
+(11, '7', 500, '2022-07-24', 'Operating Income'),
+(12, '7', 1500, '2022-08-24', 'Operating Income'),
+(13, '7', 400, '2022-10-24', 'Non-Operating Income'),
+(14, '7', 1600, '2022-10-24', 'Non-Operating Income'),
+(16, '7', 500, '2022-12-24', 'Non-Operating Income'),
+(17, '7', 1000, '2023-01-24', 'Operating Income'),
+(18, '7', 1200, '2023-02-24', 'Operating Income'),
+(19, '7', 500, '2023-03-24', 'Non-Operating Income');
 
 -- --------------------------------------------------------
 
@@ -79,6 +112,12 @@ ALTER TABLE `expenses`
   ADD PRIMARY KEY (`expense_id`);
 
 --
+-- Indexes for table `income`
+--
+ALTER TABLE `income`
+  ADD PRIMARY KEY (`income_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -92,7 +131,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `expense_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `expense_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
+--
+-- AUTO_INCREMENT for table `income`
+--
+ALTER TABLE `income`
+  MODIFY `income_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
