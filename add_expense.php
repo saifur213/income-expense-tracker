@@ -210,15 +210,9 @@ if (isset($_GET['delete'])) {
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory1" value="Entertainment" <?php echo ($expensecategory == 'Entertainment') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="expensecategory1">
-                                                Entertainment
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory7" value="Clothings" <?php echo ($expensecategory == 'Clothings') ? 'checked' : '' ?>>
+                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory7" value="Employee Salary" <?php echo ($expensecategory == 'Employee Salary') ? 'checked' : '' ?>>
                                             <label class="form-check-label" for="expensecategory7">
-                                                Clothings
+                                                Employee Salary
                                             </label>
                                         </div>
                                         <div class="form-check">
