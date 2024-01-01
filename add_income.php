@@ -5,6 +5,7 @@ $del = false;
 $expenseamount = "";
 $expensedate = date("Y-m-d");
 $expensecategory = "Entertainment";
+$successMessage = "";
 if (isset($_POST['add'])) {
     $expenseamount = $_POST['expenseamount'];
     $expensedate = $_POST['expensedate'];
@@ -12,6 +13,10 @@ if (isset($_POST['add'])) {
 
     $expenses = "INSERT INTO income (user_id, income,incomedate,incomecategory) VALUES ('$userid', '$expenseamount','$expensedate','$expensecategory')";
     $result = mysqli_query($con, $expenses) or die("Something Went Wrong!");
+    // Set the success message
+    if (mysqli_query($con, $expenses)){
+        $successMessage = "Your income added successfully";
+    } 
     header('location: add_income.php');
 }
 
@@ -218,6 +223,13 @@ if (isset($_GET['delete'])) {
                                 </div>
                             </div>
                         </form>
+                        <div class="col-md-12 text-center">
+                            <?php if (!empty($successMessage)) : ?>
+                                <div class="alert alert-success" role="alert">
+                                    <?php echo $successMessage; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
 
                     <div class="col-md-3"></div>

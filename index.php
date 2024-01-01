@@ -66,6 +66,7 @@
         <a href="add_income.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Income</a>
         <a href="add_expense.php" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
         <a href="manage_expense.php" class="list-group-item list-group-item-action "><span data-feather="activity"></span> Manage Expenses</a>
+        <a href="manage_income.php" class="list-group-item list-group-item-action "><span data-feather="activity"></span> Manage Income</a>
       </div>
       <div class="sidebar-heading">Settings </div>
       <div class="list-group list-group-flush">
@@ -124,6 +125,11 @@
                     </a>
                   </div>
                   <div class="col text-center">
+                    <a href="manage_income.php"><img src="icon/maex.png" width="57px" />
+                      <p>Manage Income</p>
+                    </a>
+                  </div>
+                  <div class="col text-center">
                     <a href="profile.php"><img src="icon/prof.png" width="57px" />
                       <p>User Profile</p>
                     </a>
@@ -170,6 +176,28 @@
                         // Access the total_income column from the result
                         $totalExpense = $row['total_expense'];
                         echo "<h2>Total Expense: " . number_format($totalExpense, 2) . "</h2>"; // Format as currency if needed
+                      } else {
+                        // Display an error message if the query fails
+                        echo "Error: " . mysqli_error($con);
+                      }
+                    
+                    ?>
+                  </div>
+                  <div class="col text-center">
+                  <?php 
+                      $result1 = mysqli_query($con, "SELECT SUM(expense) AS total_expense FROM expenses");
+                      $result2 = mysqli_query($con, "SELECT SUM(income) AS total_income FROM income");
+
+                      // Check if the query was successful
+                      if ($result or $result2) {
+                        // Fetch the result as an associative array
+                        $row1 = mysqli_fetch_assoc($result1);
+                        $row2 = mysqli_fetch_assoc($result2);
+
+                        // Access the total_income column from the result
+                        $totalExpense = $row1['total_expense'];
+                        $totalIncome = $row2['total_income'];
+                        echo "<h2>Profit & Loss: " . number_format($totalExpense-$totalIncome, 2) . "</h2>"; // Format as currency if needed
                       } else {
                         // Display an error message if the query fails
                         echo "Error: " . mysqli_error($con);
