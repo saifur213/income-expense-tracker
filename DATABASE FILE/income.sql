@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 01, 2024 at 04:54 AM
+-- Generation Time: Jan 01, 2024 at 06:30 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -50,7 +50,11 @@ INSERT INTO `income` (`income_id`, `user_id`, `income`, `incomedate`, `incomecat
 (16, '7', 500, '2022-12-24', 'Non-Operating Income'),
 (17, '7', 1000, '2023-01-24', 'Operating Income'),
 (18, '7', 1200, '2023-02-24', 'Operating Income'),
-(19, '7', 500, '2023-03-24', 'Non-Operating Income');
+(19, '7', 500, '2023-03-24', 'Non-Operating Income'),
+(20, '7', 1500, '2024-01-01', 'Non-Operating Income'),
+(21, '7', 1200, '2024-01-01', 'Operating Income'),
+(23, '7', 1300, '2024-01-01', 'Non-Operating Income'),
+(24, '7', 1400, '2024-01-02', 'Operating Income');
 
 --
 -- Indexes for dumped tables
@@ -70,7 +74,7 @@ ALTER TABLE `income`
 -- AUTO_INCREMENT for table `income`
 --
 ALTER TABLE `income`
-  MODIFY `income_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `income_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

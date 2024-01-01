@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 01, 2024 at 04:54 AM
+-- Generation Time: Jan 01, 2024 at 06:30 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -45,7 +45,8 @@ INSERT INTO `expenses` (`expense_id`, `user_id`, `expense`, `expensedate`, `expe
 (83, '7', 600, '2023-01-24', 'Bills & Recharges'),
 (84, '7', 1500, '2023-01-24', 'Clothings'),
 (85, '7', 1500, '2023-02-24', 'Food'),
-(86, '7', 500, '2023-02-24', 'Medicine');
+(86, '7', 500, '2023-02-24', 'Medicine'),
+(87, '7', 1000, '2024-01-01', 'Rent');
 
 --
 -- Indexes for dumped tables
@@ -65,7 +66,7 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `expense_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `expense_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

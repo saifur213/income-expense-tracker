@@ -81,7 +81,7 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM income WHERE user_id = '$userid
             </nav>
 
             <div class="container-fluid">
-                <h3 class="mt-4 text-center">Manage Expenses</h3>
+                <h3 class="mt-4 text-center">Manage Income</h3>
                 <hr>
                 <div class="row justify-content-center">
 
