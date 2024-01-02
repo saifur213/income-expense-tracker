@@ -11,10 +11,18 @@ if (isset($_POST['add'])) {
     $expensedate = $_POST['expensedate'];
     $expensecategory = $_POST['expensecategory'];
 
-    $expenses = "INSERT INTO expenses (user_id, expense,expensedate,expensecategory) VALUES ('$userid', '$expenseamount','$expensedate','$expensecategory')";
+    if ($expensecategory == 'Other') {
+        // If "Other" category is selected, retrieve the value from the otherCategory input field
+        $otherCategory = $_POST['otherCategory'];
+        $expenses = "INSERT INTO expenses (user_id, expense, expensedate, expensecategory) VALUES ('$userid', '$expenseamount', '$expensedate', '$otherCategory')";
+    } else {
+        $expenses = "INSERT INTO expenses (user_id, expense, expensedate, expensecategory) VALUES ('$userid', '$expenseamount', '$expensedate', '$expensecategory')";
+    }
+
     $result = mysqli_query($con, $expenses) or die("Something Went Wrong!");
+
     // Set the success message
-    $successMessage = "Your income added successfully";
+    $successMessage = "Your expense added successfully";
 }
 
 if (isset($_POST['update'])) {
@@ -230,11 +238,15 @@ if (isset($_GET['delete'])) {
                                                 Household Items
                                             </label>
                                         </div>
+                                        <!-- Add an "Other" radio button with an onclick event -->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategory5" value="Others" <?php echo ($expensecategory == 'Others') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="expensecategory5">
-                                                Others
-                                            </label>
+                                            <input class="form-check-input" type="radio" name="expensecategory" id="expensecategoryOther" value="Other" <?php echo ($expensecategory == 'Other') ? 'checked' : '' ?> onclick="toggleOtherCategory()">
+                                            <label class="form-check-label" for="expensecategoryOther">Other</label>
+                                        </div>
+                                        <!-- Add a hidden input field for the "Other" category -->
+                                        <div class="form-group" id="otherCategoryField" style="display: none;">
+                                            <label for="otherCategory">Other Category:</label>
+                                            <input type="text" class="form-control" id="otherCategory" name="otherCategory" value="<?php echo $otherCategory ?? ''; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -285,7 +297,18 @@ if (isset($_GET['delete'])) {
         feather.replace();
     </script>
     <script>
+        function toggleOtherCategory() {
+        var otherCategoryField = document.getElementById('otherCategoryField');
+        var otherCategoryInput = document.getElementById('otherCategory');
 
+        if (document.getElementById('expensecategoryOther').checked) {
+            otherCategoryField.style.display = 'block';
+            otherCategoryInput.setAttribute('required', 'required'); // Optionally make the field required
+        } else {
+            otherCategoryField.style.display = 'none';
+            otherCategoryInput.removeAttribute('required');
+        }
+        }
     </script>
 </body>
 </html>

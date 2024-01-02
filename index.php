@@ -197,7 +197,7 @@
                         // Access the total_income column from the result
                         $totalExpense = $row1['total_expense'];
                         $totalIncome = $row2['total_income'];
-                        echo "<h2>Profit & Loss: " . number_format($totalExpense-$totalIncome, 2) . "</h2>"; // Format as currency if needed
+                        echo "<h2>Profit & Loss: " . number_format($totalIncome-$totalExpense, 2) . "</h2>"; // Format as currency if needed
                       } else {
                         // Display an error message if the query fails
                         echo "Error: " . mysqli_error($con);
